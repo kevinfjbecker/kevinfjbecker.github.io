@@ -1,4 +1,4 @@
-kevinfjbecker.github.no
+kevinfjbecker.github.io
 =======================
 
 What I'm about
