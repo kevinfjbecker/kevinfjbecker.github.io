@@ -1,4 +1,4 @@
 kevinfjbecker.github.io
 =======================
 
-What I'm about
+What I'm up to
