@@ -4,52 +4,81 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <meta charset="utf-8">
     <title>kfjb</title>
+    <style type="text/css">
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+h1 {
+  padding-left: 276px;
+}
+.thumb {
+  border: solid 1px #ccc;
+}
+.preview {
+  border: solid 1px #ccc;
+  height: 80px;
+  margin-bottom: .5em;
+  width: 720px;
+}
+a:not(:hover) {
+  text-decoration: none;
+}
+a {
+  color: steelblue;
+}
+
+    </style>
   </head>
   <body>
-    <h1>kevin fj becker</h1>
-    <div id="projects">
-      <h3>projects</h3>
-    </div>
-    <div id="learning">
-      <h3>learning</h3>
-    </div>
-  <script id="jsbin-javascript">
+    <h1>kevinfjbecker</h1>
+    <div id="projects"></div>
+    <div id="learning"></div>
+    <script id="jsbin-javascript">
+
 var pageData = {
         "projects": [{
             "title": "quickrank",
-            "href": "http://kevinfjbecker.github.io/quickrank/"
+            "href": "http://kevinfjbecker.github.io/quickrank/",
+            "preview": "img/quickrank.png"
         }, {
             "title": "pivotcluster",
-            "href": "http://kevinfjbecker.github.io/pivotcluster/"
+            "href": "http://kevinfjbecker.github.io/pivotcluster/",
+            "preview": "img/pivotcluster.png"
         }, {
             "title": "wdamtg",
-            "href": "http://kevinfjbecker.github.io/wdamtg/"
+            "href": "http://kevinfjbecker.github.io/wdamtg/",
+            "preview": "img/wdamtg.png"
         }],
         "learning": [{
             "title": "Getting and Cleaning Data",
-            "href": "https://drive.google.com/file/d/0B9qNhn-CGm-2bGVfOGJyLVpfV0k/view?usp=sharing"
+            "href": "https://drive.google.com/file/d/0B9qNhn-CGm-2bGVfOGJyLVpfV0k/view?usp=sharing",
+            "preview": "img/getdata2014.png"
         }, {
             "title": "R Programming",
-            "href": "https://drive.google.com/file/d/0B9qNhn-CGm-2R3NULW0yd3NieGc/view?usp=sharing"
+            "href": "https://drive.google.com/file/d/0B9qNhn-CGm-2R3NULW0yd3NieGc/view?usp=sharing",
+            "preview": "img/rprog2014.png"
         }, {
             "title": "The Data Scientist’s Toolbox",
-            "href": "https://drive.google.com/open?id=0B9qNhn-CGm-2MmJ1R1E1WklaeFE&authuser=0"
+            "href": "https://drive.google.com/open?id=0B9qNhn-CGm-2MmJ1R1E1WklaeFE&authuser=0",
+            "preview": "img/toolbox2014.png"
         }, {
             "title": "Introduction to Artificial Intelligence",
-            "href": "https://drive.google.com/open?id=0B9qNhn-CGm-2S09ISHRwN0k1WkdXN1l5d1cwem1CdGpvRHlV&authuser=0"
+            "href": "https://drive.google.com/open?id=0B9qNhn-CGm-2S09ISHRwN0k1WkdXN1l5d1cwem1CdGpvRHlV&authuser=0",
+            "preview": "img/aiintro2011.png"
         }]
     },
 
-    projects = d3.select('#projects').append('ul').selectAll('li')
+    projects = d3.select('#projects').selectAll('p')
     .data(pageData.projects)
-    .enter().append('li'),
+    .enter().append('p').append('a'),
 
-    learning = d3.select('#learning').append('ul').selectAll('li')
+    learning = d3.select('#learning').selectAll('p')
     .data(pageData.learning)
-    .enter().append('li');
+    .enter().append('p').append('a');
 
 
-projects.append('a')
+projects
     .text(function(d) {
         return d.title;
     })
@@ -57,7 +86,15 @@ projects.append('a')
         return d.href;
     })
     .attr('target', '_blank');
-learning.append('a')
+projects.append('br');
+projects.append('img')
+    .attr('src', function(d) {
+        return d.preview || '';
+    })
+    .classed('preview', true);
+
+
+learning
     .text(function(d) {
         return d.title;
     })
@@ -65,6 +102,13 @@ learning.append('a')
         return d.href;
     })
     .attr('target', '_blank');
-</script>
-</body>
+learning.append('br');
+learning.append('img')
+    .attr('src', function(d) {
+        return d.preview || '';
+    })
+    .classed('thumb', true);
+
+    </script>
+  </body>
 </html>
